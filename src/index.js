@@ -4,7 +4,6 @@ const path = require("path");
 const { PORT, DB_URL } = require("./constants");
 const router = require("./routes");
 const mongoose = require("mongoose");
-const { error } = require("console");
 
 // Local Variabels
 const app = express();
@@ -26,6 +25,9 @@ dbConnect()
     .then(() => {
         console.log("Database connected successfully");
     })
-    .catch (error => console.log(`Error while connecting Database, Error: ${error}`));
+    .catch (err => console.log(`Error while connecting Database, Error: ${err}`));
+
+// Configure routes
+app.use(router);
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));

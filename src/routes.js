@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
-// TODO: routes
+const homeController = require("./controllers/homeController");
+
 
 module.exports = router;
