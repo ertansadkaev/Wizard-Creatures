@@ -4,6 +4,7 @@ const path = require("path");
 const { PORT, DB_URL } = require("./constants");
 const mongoose = require("mongoose");
 const routes = require('./router');
+const cookieParser = require('cookie-parser');
 
 // Local Variabels
 const app = express();
@@ -11,6 +12,7 @@ const app = express();
 //Express Configuration
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.resolve(__dirname, "./public")));
+app.use(cookieParser());
 
 //Handlebars Configuration
 app.engine("hbs", handlebars.engine({extname: "hbs"}));
