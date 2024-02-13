@@ -2,6 +2,7 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const path = require("path");
 const { PORT } = require("./constants");
+const router = require("./routes");
 
 // Local Variabels
 const app = express();
