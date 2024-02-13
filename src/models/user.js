@@ -8,6 +8,11 @@ const userSchema = new mongoose.Schema({
     password: {type: String , required: true, minLength: 4}
 });
 
+userSchema.path('email').validate(function (email) {
+    const emailFromDb = mongoose.model('User').findOne({ email });
+    return !!emailFromDb;
+}, "Email already exists!")
+
 userSchema.virtual('repeatPassword').set (function (value) {
     if (value !== this.password) {
         throw new Error ("Password mismatch !");

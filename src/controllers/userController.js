@@ -12,16 +12,24 @@ router.get('/register', (req, res) => {
 router.post('/login', async (req, res) => {
     const {email, password} = req.body;
 
-    await userService.login({email, password});
-    res.redirect('/');
-})
+    const user = await userService.login(email, password);
+    console.log({ user });
+
+    res.redirect('/'); 
+});
+   
 
 router.post('/register', async (req, res) => {
-    const {firstName, lastName, email, password, repeatPassword} = req.body;
-
-    await userService.register({firstName, lastName, email, password, repeatPassword});
-    res.redirect('/users/login');
+    const { firstName, lastName, email, password, repeatPassword } = req.body;
+  
+    try {
+      await userService.register({ firstName, lastName, email, password, repeatPassword });
+  
+      res.redirect('/users/login');
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
 })
 
 
-module.exports = router
+module.exports = router;
