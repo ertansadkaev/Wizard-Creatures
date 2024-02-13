@@ -10,10 +10,12 @@ router.get('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
     const {email, password} = req.body;
+    res.redirect('/');
 })
 
 router.post('/register', (req, res) => {
     const {firstName, lastName, email, password, repeatPassword} = req.body;
+    res.redirect('/users/login');
 })
 
 
