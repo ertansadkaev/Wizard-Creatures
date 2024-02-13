@@ -2,15 +2,15 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const path = require("path");
 const { PORT, DB_URL } = require("./constants");
-const router = require("./routes");
 const mongoose = require("mongoose");
+const routes = require('./router');
 
 // Local Variabels
 const app = express();
 
 //Express Configuration
 app.use(express.urlencoded({extended: false}));
-app.use(express.static(path.resolve(__dirname, "../public")));
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 //Handlebars Configuration
 app.engine("hbs", handlebars.engine({extname: "hbs"}));
@@ -28,6 +28,6 @@ dbConnect()
     .catch (err => console.log(`Error while connecting Database, Error: ${err}`));
 
 // Configure routes
-app.use(router);
+app.use(routes);
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
