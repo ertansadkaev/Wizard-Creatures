@@ -8,16 +8,16 @@ const userSchema = new mongoose.Schema({
     password: {type: String , required: true, minLength: 4}
 });
 
-// userSchema.virtual('repeatPassword').set (function (value) {
-    // if (value !== this.password) {
-        // throw new Error ("Password mismatch !");
-    // }
-// });
+userSchema.virtual('repeatPassword').set (function (value) {
+    if (value !== this.password) {
+        throw new Error ("Password mismatch !");
+    }
+});
 
-// userSchema.pre ('save', async function () {                                         
-    // const hash = await bcrypt.hash(this.password, 10);  
-    // this.password = hash
-// });
+userSchema.pre ('save', async function () {                                         
+    const hash = await bcrypt.hash(this.password, 10);  
+    this.password = hash
+});
 
 const User = mongoose.model('User', userSchema);
 
