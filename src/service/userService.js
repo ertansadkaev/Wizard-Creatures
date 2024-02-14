@@ -9,18 +9,20 @@ exports.register = (userData) => User.create(userData);
 exports.login = async (email, password) => {
     const user = await User.findOne({ email });
 
-    if (!user) {
-        throw new Error ("Invalid email or password!");
+    // validate user
+    if(!user){
+        throw new Error('invalid email or password');
     }
 
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    //validate password
+    const isValid = await bcrypt.compare(password, user.password);
 
-    if (!isValidPassword) {
-        throw new Error ("Invalid email or password!");
+    if (!isValid){
+        throw new Error('invalid email or password');
     }
 
-    const payload = { _id: user._id, email: user.email };
-    const token = await jwt.sign(payload, SECRET, {expiresIn: '3d'});
+    const payload = {};
+    const token = await jwt.sign(payload, SECRET, {expiresIn: "3d" });
 
-    return token;
+    return user;
 };
