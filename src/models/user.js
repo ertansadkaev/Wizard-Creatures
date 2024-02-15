@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-    firstName:{type:String, required:true},
-    lastName:{type:String, required:true},
-    email:{type:String, required:true, unique:true},
-    password:{type:String, required:true}
+    firstName:{type:String, required:[true, 'First Name is required!']},
+    lastName:{type:String, required:[true, 'Last Name is required!']},
+    email:{type:String, required:[true, 'Email is required!'], unique:true},
+    password:{type:String, required:[true, 'Password is required!']}
 });
 
 userSchema.virtual('repeatPassword').set (function (value) {

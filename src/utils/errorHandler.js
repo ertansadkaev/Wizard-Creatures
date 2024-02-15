@@ -8,6 +8,15 @@ exports.extractErrorMsgs = (error) => {
         const msgs = errors.map((e) => e.message);
         return msgs;
     }
+    if (error.errors) {
+        const errors = Object.values(error.errors);
+        const msgs = errors.map((e) => e.message);
+        return msgs;
+    }
+
+    if (error.code === 11000) {
+        return ['Email already exists!'];
+    }
 
     return [error.message];
 }
