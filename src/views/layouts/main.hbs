@@ -19,7 +19,7 @@
         <!--
         <div class="error-container">
             <p>Error</p>
-        </div>-->
+        </div> -->
 
 
         <nav>
@@ -44,7 +44,11 @@
         </nav>
 
         <main>
-
+            {{#each errorMessages}}
+        <div class="error-container">
+            <p>{{this}}</p>
+        </div>
+            {{/each}}
             {{{body}}}
 
         </main>

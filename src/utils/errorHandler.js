@@ -9,5 +9,5 @@ exports.extractErrorMsgs = (error) => {
         return msgs;
     }
 
-    return [err.message]
+    return [error.message];
 }

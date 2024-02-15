@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-    firstName: {type: String , required: true, minLength: 3},
-    lastName: {type: String , required: true, minLength: 3},
-    email: {type: String , required: true, unique: true, minLength: 5},
-    password: {type: String , required: true, minLength: 4}
+    firstName: {type: String , required: true},
+    lastName: {type: String , required: true},
+    email: {type: String , required: true, unique: {value: true}},
+    password: {type: String , required: true}
 });
 
-userSchema.path('email').validate(function (email) {
-    const emailFromDb = mongoose.model('User').findOne({ email });
-    return !!emailFromDb;
-}, "Email already exists!")
+// userSchema.path('email').validate(function (email) {
+    // const emailFromDb = mongoose.model('User').findOne({ email });
+    // return !!emailFromDb;
+// }, "Email already exists!")
 
 userSchema.virtual('repeatPassword').set (function (value) {
     if (value !== this.password) {
