@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const userService = require('../service/userService');
-const { extractErrorMsgs } = require('../utils/errorHandler');
+const { extractErrorMsgs } = require('./../utils/errorHandler');
 
 router.get('/login', (req, res) => {
     res.render('login');
