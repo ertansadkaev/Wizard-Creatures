@@ -3,11 +3,11 @@ const userService = require('../service/userService');
 const { extractErrorMsgs } = require('./../utils/errorHandler');
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('user/login');
 })
 
 router.get('/register', (req, res) => {
-    res.render('register');
+    res.render('user/register');
 })
 
 router.get("/logout", (req, res) => {
@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
       
     } catch (error) {
       const errorMessages = extractErrorMsgs(error);
-      res.status(404).render('login', {errorMessages});
+      res.status(404).render('user/login', {errorMessages});
     }
     
   });
@@ -41,9 +41,8 @@ router.post('/register', async (req, res) => {
       res.redirect('/users/login');
     } catch (error) {
       const errorMessages = extractErrorMsgs(error);
-      console.log({errorMessages});
 
-      res.status(404).render('register', { errorMessages });
+      res.status(404).render('user/register', { errorMessages });
     }
 })
 
