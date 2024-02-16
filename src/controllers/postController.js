@@ -19,8 +19,11 @@ router.post('/create', async (req, res) => {
     res.redirect('/posts/all')
 })
 
-router.get('/profile', (req, res) => {
-    res.render('post/profile');
+router.get('/profile', async (req, res) => {
+    const { user } = req;
+    const myCreatures = await creatureService.getMyCreatures(user?._id).lean();
+
+    res.render('post/profile', { myCreatures });
 });
 
 router.get('/:creatureId/details', async (req, res) => {

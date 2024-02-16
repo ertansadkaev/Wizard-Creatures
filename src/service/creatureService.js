@@ -9,3 +9,5 @@ exports.singleCreature = (creatureId) => Creature.findById(creatureId);
 exports.update = (creatureId, createData) => Creature.findByIdAndUpdate(creatureId, createData);
 
 exports.delete = (creatureId) => Creature.findByIdAndDelete(creatureId);
+
+exports.getMyCreatures = (ownerId) => Creature.find({ owner: ownerId });
